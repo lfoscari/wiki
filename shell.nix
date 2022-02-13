@@ -17,5 +17,11 @@ pkgs.mkShell {
 		for ext in properties graph md5sums fcl; do
 		    wget -c --output-document graph/$BASENAME.$ext $BASEURL/$BASENAME/$BASENAME.$ext
 		done
+
+        if [ ! -f graph/$BASENAME.offsets ]; then
+          echo "Computing offsets"
+          java it.unimi.dsi.webgraph.BVGraph -o -O -L graph/$BASENAME
+        fi
+
 	'';
 }
