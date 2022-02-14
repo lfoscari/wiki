@@ -1,7 +1,7 @@
 with import <nixpkgs> {};
 
 pkgs.mkShell {
-	buildInputs = with pkgs; [ maven jdk11 ];
+	buildInputs = with pkgs; [ maven ];
 
 	JAVA_ARGS = "-Xmx2G";
 
