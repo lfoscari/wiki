@@ -9,8 +9,6 @@ pkgs.mkShell {
 	BASEURL = "http://data.law.di.unimi.it/webdata";
 
 	shellHook = ''
-		set -e
-
 		mkdir -p graph
 
 		echo "Downloading graph and entities"
