@@ -16,7 +16,7 @@ import it.unimi.dsi.webgraph.BVGraph;
 public class Cluster {
 	public static void main(String[] args) throws IOException {
 		BVGraph graph = BVGraph.load("../graph/enwiki-2021");
-		long seed = 420l;
+		long seed = 420L;
 
 		LayeredLabelPropagation llp = new LayeredLabelPropagation(graph, seed);
 

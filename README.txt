@@ -3,4 +3,6 @@ project uses WebGraph (https://webgraph.di.unimi.it) and is based on Nix
 (https://nixos.org). The wikipedia crawls were kindly provided by LAW
 (https://law.di.unimi.it/webdata/enwiki-2021).
 
-To experiment install the Nix shell and run `nix-shell`.
+The goal is to experiment a preprocessing algorithm based on clustering too
+speed up the search for a path in a very large graph given the starting and
+ending nodes.
