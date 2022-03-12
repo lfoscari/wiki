@@ -1,7 +1,7 @@
 with import <nixpkgs> {};
 
 pkgs.mkShell {
-	buildInputs = with pkgs; [ maven ];
+	buildInputs = with pkgs; [ wget maven ];
 
 	JAVA_ARGS = "-Xmx2G";
 
@@ -11,15 +11,25 @@ pkgs.mkShell {
 	shellHook = ''
 		mkdir -p graph
 
-		echo "Downloading graph and entities"
+		echo "Downloading graph and entities..."
 		for ext in properties graph md5sums fcl; do
-		    wget -c --output-document graph/$BASENAME.$ext $BASEURL/$BASENAME/$BASENAME.$ext
+            echo -e '\t' graph/$BASENAME.$ext
+		    wget -qc --output-document graph/$BASENAME.$ext $BASEURL/$BASENAME/$BASENAME.$ext
 		done
 
-        if [ ! -f graph/$BASENAME.offsets ]; then
-          echo "Computing offsets"
-          java it.unimi.dsi.webgraph.BVGraph -o -O -L graph/$BASENAME
-        fi
+        cd wiki
+        echo "Setting classpath..."
 
+        mvn -q dependency:build-classpath -Dmdep.outputFile=classpath.txt
+        export CLASSPATH="`cat classpath.txt`:$CLASSPATH"
+
+        cd ..
+
+        if [ -f graph/$BASENAME.offsets ] && [ graph/$BASENAME.offsets -nt graph/$BASENAME.graph ]; then
+          echo "Offsets already present... skipping"
+        else
+          echo "Computing offsets..."
+          java it.unimi.dsi.webgraph.BVGraph -o -O -L graph/enwiki-2021
+        fi
 	'';
 }
