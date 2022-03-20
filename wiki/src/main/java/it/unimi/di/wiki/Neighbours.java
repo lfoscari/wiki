@@ -1,4 +1,4 @@
-package lfoscari;
+package it.unimi.di.wiki;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,21 +12,21 @@ import it.unimi.dsi.webgraph.LazyIntIterator;
  * Get neighbours of node.
  *
  */
-public class Neighbours 
+public class Neighbours
 {
-    public static void main(String[] args) throws IOException, ClassNotFoundException
-    {
+    @SuppressWarnings("unchecked")
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         System.out.print("Pick a starting node: ");
-        
+
         Scanner sc = new Scanner(System.in);
         int start = sc.nextInt();
         sc.close();
-        
-        List<? extends CharSequence> node2url = (List<? extends CharSequence>) BinIO.loadObject("../graph/enwiki-2021.fcl");
-        
+
+        List<CharSequence> node2url = (List<CharSequence>) BinIO.loadObject("../graph/enwiki-2021.fcl");
+
         BVGraph graph = BVGraph.load("../graph/enwiki-2021");
         System.out.println(start + " - " + node2url.get(start) + ":");
-        
+
         int s;
         LazyIntIterator successors = graph.successors(start);
         while((s = successors.nextInt()) != -1) {
