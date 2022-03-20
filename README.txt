@@ -6,3 +6,6 @@ project uses WebGraph (https://webgraph.di.unimi.it) and is based on Nix
 The goal is to experiment a preprocessing algorithm based on clustering too
 speed up the search for a path in a very large graph given the starting and
 ending nodes.
+
+Upon cloning the repository download the graph data by running
+`download-wiki.sh`.
