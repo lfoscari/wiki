@@ -3,7 +3,7 @@ project uses WebGraph (https://webgraph.di.unimi.it) and is based on Nix
 (https://nixos.org). The wikipedia crawls were kindly provided by LAW
 (https://law.di.unimi.it/webdata/enwiki-2021).
 
-The goal is to experiment a preprocessing algorithm based on clustering too
+The goal is to experiment a preprocessing algorithm based on clustering to
 speed up the search for a path in a very large graph given the starting and
 ending nodes.
 
